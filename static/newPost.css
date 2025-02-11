@@ -1,0 +1,377 @@
+html, body{
+    height:100%;
+    width:100%;
+    margin:0;
+    background-color:#1F1F1F;
+    font-family: 'Monaco', monospace;
+}
+
+input, pre, p {
+    font-family: 'Monaco', monospace;
+}
+
+header{
+    background-color: #2F2F2F;
+    height: 12%;
+    color:white;
+    border-bottom: solid 3px white;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.logo{
+    height: 10vh;
+}
+
+.profilePicture {
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+}
+
+.containerNamePP {
+    display:flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width:fit-content;
+    align-items: center;
+}
+
+.clocheNotif {
+    width:40px;
+}
+
+.nbNotifs {
+    position: absolute;
+    background-color: #FF0700;
+    height:fit-content;
+    width:fit-content;
+    padding:2px;
+    border-radius: 4px;
+    top:7%;
+    right:1.2%;
+}
+
+.nbNotifs p {
+    height:fit-content;
+    width:fit-content;
+    margin:0;
+    color:white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.rightHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    padding: 0 20px; 
+}
+
+.notCoContainer{
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    width:fit-content;
+    gap: 10px;
+}
+
+.notCoContainer button {
+    background-color: #0070FF;
+    color:white;
+    font-family: 'Monaco', monospace;
+    border:none;
+    font-size:18px;
+    border-radius:8px;
+    padding:5px;
+}
+
+.notCoContainer button:hover {
+    background-color:#065fd4;
+}
+
+form {
+    margin-top:5vh;
+    margin-inline:auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width:90vw;
+    color:white;
+}
+
+form .formTitleInput{
+    margin-top: 4%;
+    background-color:#2F2F2F;
+    border:solid #4F4F4F 2px;
+    border-radius:1.5vw;
+    padding:2%;
+    font-size:20px;
+    color:white;
+    outline:none;
+}
+
+form .formTitleInput:focus {
+    border:solid #8F8F8F 2px;
+}
+
+form .formTextInput{
+    margin-top: 4%;
+    background-color:#2F2F2F;
+    border:solid #4F4F4F 2px;
+    border-radius:1.5vw;
+    resize: vertical;
+    font-size:20px;
+    min-height:30vh;
+    padding:2%;
+    box-sizing: border-box;
+    outline:none;
+    color:white;
+}
+
+form .formTextInput:focus {
+    border:solid #8F8F8F 2px;
+}
+
+form .formTextInput::-webkit-scrollbar{
+    display:none;
+}
+
+form .formCategories{
+    background-color:#2F2F2F;
+    height:fit-content;
+    margin-top: 4%;
+    padding:2%;
+    border-radius:1.5vw;
+    font-size:18px;
+}
+
+form .formCategories .containerCategories{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap:2vh;
+    justify-content:first baseline;
+}
+
+form .pictureInputContainer {
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+form .pictureInputContainer .pictureInput{
+    background-color: #2F2F2F;
+    font-family: 'monaco', monospace;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.errorMessage {
+    color: red;
+    text-align: center;
+    width:fit-content;
+    margin-inline: auto;
+    margin-top:1%;
+}
+
+.categorie{
+    width:15vw;
+}
+
+form .formSubmit {
+    margin-top:4%;
+    padding:1% 2%;
+    margin-inline:auto;
+    width:fit-content;
+    font-size:x-large;
+    background-color: #0070FF;
+    color:white;
+    border:none;
+    border-radius: 1vw;
+    margin-bottom: 2%;
+}
+
+form .formSubmit:hover {
+    background-color:#065fd4;
+}
+
+a{
+    text-decoration: none;
+}
+
+::placeholder {
+    color:white;
+}
+
+.containerUsername {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 75%; 
+    background-color: #505050;
+    border-radius: 1vw;
+    width: max-content;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 999;
+}
+
+.containerUsername:hover .dropdown {
+    display: flex;
+}
+
+.dropOp {
+    color: white;
+    background-color:#505050;
+    border:solid white 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dropUp{
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.dropUp:hover {
+    background-color: #0070FF; 
+}
+
+.dropLow{
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.dropLow:hover {
+    background-color: #FF0700; 
+}
+
+.dropdown_animation {
+    animation: rotateX 100ms ease-in-out forwards
+    
+}
+    
+
+@keyframes rotateX {
+     0% {
+        transform: rotateX(90deg)
+    }
+    80% {
+        transform: rotateX(-10deg)
+    }
+    100% {
+        transform: rotateX(0)
+    }
+}
+
+    /*mode téléphone*/
+    @media (max-width: 760px) {
+        header{
+            height: fit-content;
+            display: flex;
+            justify-content: fit-;
+            align-items:center;
+        }
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+        .headerContainer {   
+            flex-wrap: wrap;
+            
+        }
+        .notCoContainer {
+            zoom: 80%;
+        }
+        .logo {
+            zoom: 70%;
+        }
+        .mainPost {
+            margin: none;
+        }
+        .mainPostHeader {
+            flex-direction: row;
+        }
+        .mainPostHeader  P {
+            word-wrap: break-word;
+            max-width: 50%;
+            margin: 1%;
+        }
+        .mainPostHeader  P .parDate {
+            width: fit-content;
+            justify-items: end;
+        }
+        .usernamePar {
+            max-width: 75%;
+            word-wrap:break-word;
+
+        }
+        .containerNamePP {
+            column-gap: 0;
+            max-width: 150px;
+        }
+        .containerUsername {
+            column-gap: 0;
+            justify-content: center;
+        }
+        .mainPost pre {
+            margin: 10px;
+        }
+
+        .mainPostFooter {
+            flex-direction: column;
+        }
+        .mainPostFooter .mainPostMod {
+            position:relative;
+            left: 0;
+            right: 0;
+        }
+        .userInfo p {
+            word-wrap: break-word;
+            max-width: 50%;
+        }
+        .mainPostHeader .parDate {
+            text-align: right;
+            margin-right: 10px;
+        }
+        .mainPostHeader > p {
+            margin-left: 10px;
+        }
+        .pictureInput {
+            word-wrap: break-word;
+            max-width: 90%;
+        }
+        .containerCategories {
+            flex-direction: row;
+            justify-content:left;
+            width: fit-content;
+            display: flex;
+        }
+        .categorie {
+            width: fit-content;
+            margin-left: 20px;
+        }
+    }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/myPostsLikes.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <div class="headerContainer">
+                <div class="leftHeader">
+                   <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+                </div>
+                <div class="rightHeader">
+                    <!--Faire if déja connecté-->
+                    <!--if déja connecté afficher pseudo-->
+                    {{if .LoggedIn}}
+                    <!-- Only show the logout button if the user is logged in -->
+                    <div class="containerUsername">  
+                        <div class = "containerNamePP">
+                            <p class="usernamePar">{{.User.Name}}</p>
+                            {{if .User.Picture}}
+                            <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                            {{else}}
+                            <img class="profilePicture" src="../pictures/defaultPic.svg">
+                            {{end}}
+                        </div>                  
+                        <div class="dropdown dropdown_animation">
+                            <a class="dropOp dropUp" href="/myProfile">
+                                My profile
+                            </a>
+                            <a class="dropOp dropLow" href="/logout">
+                                Logout
+                            </a>                   
+                        </div>  
+                    </div>
+                    <a href="/notifications">
+                        <img class="clocheNotif" src="../pictures/notifBell.svg">
+                        {{if ne .NbrNotif 0}}
+                        <div class="nbNotifs">
+                            <p>{{.NbrNotif}}</p>
+                        </div>
+                        {{end}}
+                    </a>
+                    {{else}}
+                    <!--else afficher boutons-->
+                    <div class="notCoContainer">
+                        <a name="login" href="/login"><button>Login</button></a>
+                        <a name="register" href="/register"><button>Register</button></a>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </header>
+        <p class="titlePar">Your likes :</p>
+        <div class="postList">
+            <!--For chaque posts-->
+            {{$logged := .LoggedIn}}
+            {{range .Posts}}
+            {{$lenCat := .LenCat}}
+            <div class="post">
+                <a href="/detailPost?ID={{.ID}}">
+                    <div class="postBody">
+                        <div class="postHeader">
+                            <p>{{.Title}}</p>
+                            <p>{{.Date}}</p>
+                        </div>
+                        <pre>{{.Content}}</pre>
+                        <div class="postShadow">
+                            <p class="parCat">Categories : {{range $index, $cat := .Cats}}{{$cat.Name}}{{if ne $index $lenCat}}, {{end}}{{end}}</p>
+                        </div>
+                    </div>                    
+                </a>
+                <div class="postFooter">
+                    <div class="userInfo">
+                        <p>by : </p>
+                        {{if .User.Picture}}
+                        <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                        {{else}}
+                        <img class="profilePicture" src="../pictures/defaultPic.svg">
+                        {{end}}
+                        <p>{{.User.Name}}</p>
+                    </div>
+                    <div class="compteurLikes">
+                        {{if not $logged}}
+                            <p>Login to like or dislike</p>
+                        {{end}}
+                        <a {{if $logged}} href="/likePost?ID={{.ID}}&source=/myLikes" {{end}}>
+                            <div class="likeTriangle{{if .IsLike}}A{{end}}"></div>
+                            <div class="like{{if .IsLike}}A{{end}}">
+                                <p>{{len .Likes}}</p>
+                            </div>
+                        </a>
+                        <p> / </p>
+                        <a {{if $logged}} href="/dislikePost?ID={{.ID}}&source=/myLikes" {{end}}>
+                            <div class="dislike{{if .IsDislike}}A{{end}}">
+                                <p>{{len .Dislikes}}</p>
+                            </div>
+                            <div class="dislikeTriangle{{if .IsDislike}}A{{end}}"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+            <!--end-->
+        </div>
+    </body>
+</html>

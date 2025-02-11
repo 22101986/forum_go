@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <div class="headerContainer">
+            <div class="leftHeader">
+                <!--<a href="/">Forum<br>(logo?)</a>-->
+                <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+            </div>
+            <div class="rightHeader">
+                <!--Faire if déja connecté-->
+                <!--if déja connecté afficher pseudo-->
+                {{if .LoggedIn}}
+                <!-- Only show the logout button if the user is logged in -->
+                <div class="containerUsername">
+                    <div class = "containerNamePP">
+                        <p class="usernamePar">{{.User.Name}}</p>
+                        {{if .User.Picture}}
+                        <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                        {{else}}
+                        <img class="profilePicture" src="../pictures/defaultPic.svg">
+                        {{end}}
+                    </div>                  
+                    <div class="dropdown dropdown_animation">
+                        <a class="dropOp dropUp" href="/myProfile">
+                            My profile
+                        </a>
+                        <a class="dropOp dropLow" href="/logout">
+                            Logout
+                        </a>                   
+                    </div>  
+                </div>
+                <a href="/notifications">
+                    <img class="clocheNotif" src="../pictures/notifBell.svg">
+                    {{if ne .NbrNotif 0}}
+                    <div class="nbNotifs">
+                        <p>{{.NbrNotif}}</p>
+                    </div>
+                    {{end}}
+                </a>
+                {{else}}
+                <!--else afficher boutons-->
+                <div class="notCoContainer">
+                    <a name="login" href="/login"><button>Login</button></a>
+                    <a name="register" href="/register"><button>Register</button></a>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </header>
+    <div class="container"> 
+        <div class="lefter">
+            <a {{if .LoggedIn}}href="/newPost"{{else}}href="/login"{{end}}>
+                <input type="button" name="newPost" class="newPost" value="+ New Post" >
+            </a>
+            <div class="separator"></div>
+            
+            <form method="get" action="/" class="filterBox">
+                <div class="categorieList">
+                    {{range $curCat := .AllCats}}
+                    <div class="categorie">
+                        <label>{{.Name}}</label>
+                        <input type="checkbox" name="categories" value="{{.ID}}" class="filter" {{range $.AllSelected}}{{if eq . $curCat.ID}}checked="true"{{end}}{{end}}>
+                    </div>
+                    {{end}}
+                </div>
+                <input type="submit" value="Filter" class="newPost">
+            </form>
+            <div class="separator separatorTelephon"></div>
+
+            
+        </div>
+        <div class="postList">
+            <!--For chaque posts-->
+            {{$logged := .LoggedIn}}
+            {{range .AllPosts}}
+            <!--mettre id du post en get-->
+            {{$lenCat := .LenCat}}
+            <div class="post">
+                <a href="/detailPost?ID={{.ID}}">
+                    <div class="postBody">
+                        <div class="postHeader">
+                            <p>{{.Title}}</p>
+                            <p>{{.Date}}</p>
+                        </div>
+                        <pre>{{.Content}}</pre>
+                        <div class="postShadow">
+                            <p>Categories : {{range $index, $cat := .Cats}} {{$cat.Name}}{{if ne $index $lenCat}}, {{end}}{{end}}</p>
+                        </div>
+                    </div>                    
+                </a>
+                <div class="postFooter">
+                    <div class="userInfo">
+                        <p>by : </p>
+                        {{if .User.Picture}}
+                        <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                        {{else}}
+                        <img class="profilePicture" src="../pictures/defaultPic.svg">
+                        {{end}}
+                        <p>{{.User.Name}}</p>
+                    </div>
+                    <div class="compteurLikes">
+                        <a {{if not $logged}} href="/register" {{end}} {{if $logged}} href="/likePost?ID={{.ID}}&source={{$.IndexUrl}}" {{end}}>
+                            <div class="likeTriangle{{if .IsLike}}A{{end}}"></div>
+                            <div class="like{{if .IsLike}}A{{end}}">
+                                <p>{{len .Likes}}</p>
+                            </div>
+                        </a>
+                        <p> / </p>
+                        <a {{if not $logged}} href="/register" {{end}} {{if $logged}} href="/dislikePost?ID={{.ID}}&source={{$.IndexUrl}}" {{end}}>
+                            <div class="dislike{{if .IsDislike}}A{{end}}">
+                                <p>{{len .Dislikes}}</p>
+                            </div>
+                            <div class="dislikeTriangle{{if .IsDislike}}A{{end}}"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+            <!--End for-->
+        </div>
+    </div>
+</body>
+</html>

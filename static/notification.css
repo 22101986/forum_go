@@ -1,0 +1,286 @@
+html{
+    height:100%;
+    margin:0;
+}
+
+body{
+    background-color:#1F1F1F;
+    height:100%;
+    margin:0;
+    font-family: 'Monaco', monospace;
+    color:white;
+}
+
+input, pre {
+    font-family: 'Monaco', monospace;
+}
+
+header{
+    background-color: #2F2F2F;
+    height: 12%;
+    color:white;
+    border-bottom: solid 3px white;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    height: 10vh;
+}
+
+.profilePicture {
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+}
+
+.containerNamePP {
+    display:flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width:fit-content;
+    align-items: center;
+}
+
+.clocheNotif {
+    width:40px;
+}
+
+.nbNotifs {
+    position: absolute;
+    background-color: #FF0700;
+    height:fit-content;
+    width:fit-content;
+    padding:2px;
+    border-radius: 4px;
+    top:7%;
+    right:1.2%;
+}
+
+.nbNotifs p {
+    height:fit-content;
+    width:fit-content;
+    margin:0;
+    color:white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.rightHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    padding: 0 20px; 
+}
+
+.notCoContainer{
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    width:fit-content;
+    gap: 10px;
+    padding:10px;
+    margin:5px;
+}
+
+.notCoContainer button {
+    background-color: #0070FF;
+    color:white;
+    font-family: 'Monaco', monospace;
+    border:none;
+    font-size:18px;
+    border-radius:8px;
+    padding:10px;
+    margin:5px;
+}
+
+.containerUsername {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    top: 100%;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 75%; 
+    background-color: #505050;
+    border-radius: 1vw;
+    width: max-content;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.containerUsername:hover .dropdown {
+    display: flex;
+}
+
+.dropOp {
+    color: white;
+    background-color:#505050;
+    border:solid white 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dropUp{
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.dropUp:hover {
+    background-color: #0070FF; 
+}
+
+.dropLow{
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.dropLow:hover {
+    background-color: #FF0700; 
+}
+
+.dropdown_animation {
+    animation: rotateX 100ms ease-in-out forwards
+    
+}
+    
+@keyframes rotateX {
+     0% {
+        transform: rotateX(90deg)
+    }
+    80% {
+        transform: rotateX(-10deg)
+    }
+    100% {
+        transform: rotateX(0)
+    }
+}
+
+.containerNotif {
+    margin-inline: auto;
+    margin-top:4%;
+    display:flex;
+    flex-direction: column;
+    width:80%;
+    row-gap: 20px;
+}
+
+.notif {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #303030;
+    border-radius:15px;
+    padding:2%;
+}
+
+.notif .normalInput {
+    background-color:#0070FF;
+    border:none;
+    color:white;
+    text-decoration: none;
+    padding:10px;
+    width:fit-content;
+    border-radius:10px;
+}
+
+.answerContainer {
+    display:flex;
+    flex-direction: row;
+    column-gap:10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.answerContainer a {
+    background-color:#0070FF;
+    border:none;
+    color:white;
+    text-decoration: none;
+    padding:10px;
+    width:fit-content;
+    border-radius:10px;
+    font-size:16px;
+    cursor: pointer;
+}
+
+.answerContainer .rejectInput {
+    background-color:#FF0700;
+}
+
+.choiceContainer {
+    display:flex;
+    flex-direction: row;
+    column-gap:10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.choiceContainer a {
+    background-color:#0070FF;
+    border:none;
+    color:white;
+    text-decoration: none;
+    padding:10px;
+    width:fit-content;
+    border-radius:10px;
+    font-size:16px;
+    cursor: pointer;
+}
+
+.choiceContainer .rejectInput {
+    background-color: #FF0700;
+}
+
+    /*Mode téléphone*/
+    @media (max-width: 760px) {
+    header{
+        height: fit-content;
+        display: flex;
+        justify-content: fit-;
+        align-items:center;
+    }
+    .headerContainer {
+        flex-wrap: wrap;
+    }
+    .containerNamePP {
+        column-gap: 0;
+        max-width: 150px;
+    }
+    .usernamePar {
+        max-width: 75%;
+        word-wrap:break-word;
+    }
+    .logo {
+        zoom: 70%;
+    }
+    .notif {
+        max-width: 100%;
+    }
+    .notif p {
+        word-wrap: break-word;
+        max-width: 80%;
+    }
+}

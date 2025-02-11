@@ -1,0 +1,404 @@
+html{
+    height:100%;
+    margin:0;
+}
+
+body{
+    background-color:#1F1F1F;
+    height:100%;
+    margin:0;
+    font-family: 'Monaco', monospace;
+}
+
+input, pre, p {
+    color: white;
+    font-family: 'Monaco', monospace;
+}
+
+header{
+    background-color: #2F2F2F;
+    height: 12%;
+    color:white;
+    border-bottom: solid 3px white;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.profilePicture {
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+}
+
+.containerNamePP {
+    display:flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width:fit-content;
+    align-items: center;
+}
+
+.logo{
+    height: 10vh;
+}
+
+.clocheNotif {
+    width:40px;
+}
+
+.nbNotifs {
+    position: absolute;
+    background-color: #FF0700;
+    height:fit-content;
+    width:fit-content;
+    padding:2px;
+    border-radius: 4px;
+    top:7%;
+    right:1.2%;
+}
+
+.nbNotifs p {
+    height:fit-content;
+    width:fit-content;
+    margin:0;
+    color:white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.rightHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    padding: 0 20px; 
+}
+
+.notCoContainer{
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    width:fit-content;
+    gap: 10px;
+    padding:10px;
+    margin:5px;
+}
+
+.notCoContainer button {
+    background-color: #0070FF;
+    color:white;
+    font-family: 'Monaco', monospace;
+    border:none;
+    font-size:18px;
+    border-radius:8px;
+    padding:10px;
+    margin:5px;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: calc(88% - 2px);
+}
+
+.lefter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: 100%;
+    border-right: solid 3px #A0A0A0;
+}
+
+.containerUsername {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 75%; 
+    background-color: #505050;
+    border-radius: 1vw;
+    width: max-content;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.containerUsername:hover .dropdown {
+    display: flex;
+}
+
+.dropOp {
+    color: white;
+    background-color:#505050;
+    border:solid white 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dropUp{
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.dropUp:hover {
+    background-color: #0070FF; 
+}
+
+.dropLow{
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.dropLow:hover {
+    background-color: #FF0700; 
+}
+
+.dropdown_animation {
+    animation: rotateX 100ms ease-in-out forwards
+    
+}
+    
+@keyframes rotateX {
+     0% {
+        transform: rotateX(90deg)
+    }
+    80% {
+        transform: rotateX(-10deg)
+    }
+    100% {
+        transform: rotateX(0)
+    }
+} 
+
+.titlePar{
+    font-size:20px;
+    margin-left:10vw;
+    margin-top:2vw;
+}
+
+.postList{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    row-gap: 25px;
+    height:fit-content;
+    width:fit-content;
+    margin-inline:auto;
+    margin-top:2%;
+}
+
+.postBody{
+    display:flex;
+    flex-direction: column;
+    background-color: #303030;
+    width: 75vw;
+    height: fit-content;
+    border-radius: 2vw;
+    min-height: 150px;
+    overflow:hidden;
+}
+
+.postBody pre {
+    max-height: 70px;
+}
+
+.postBody .postShadow{
+    box-shadow: #303030 0px -80px 36px -28px inset;
+    height:50px;
+    border-bottom-left-radius: 2vw;
+    border-bottom-right-radius: 2vw;
+    position:relative;
+    bottom:0px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.postBody .postHeader{
+    position: relative;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #505050;
+    padding: 2px;
+    height:25%;
+    border-top-left-radius: 2vw;
+    border-top-right-radius: 2vw;
+}
+
+.postBody p, .postBody pre, .compteurLikes p{
+    color:white;
+    max-width: 75vw;
+    margin: 1.4%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.postFooter .userInfo {
+    margin-left:10px;
+}
+
+.postHeader p{
+    font-size:20px;
+}
+
+.post .postFooter{
+    font-size:12px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userInfo {
+    display:flex;
+    flex-direction: row;
+    column-gap: 2px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+.parCat{
+    font-size:12px;
+}
+
+.compteurLikes{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right:2%;
+}
+
+.compteurLikes a{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:2px;
+}
+
+.likeTriangle {
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    
+    border-bottom: 10px solid white;
+    margin-right:4px;
+}
+
+.dislikeTriangle{
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    
+    border-top: 10px solid white;
+    margin-left: 2px;
+}
+
+.likeTriangleA {
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    
+    border-bottom: 10px solid #0070FF;
+    margin-right:2px;
+}
+
+.likeA p {
+    color:#0070FF;
+}
+
+.dislikeTriangleA {
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    
+    border-top: 10px solid #FF0700;
+    margin-left: 2px;
+}
+
+.dislikeA p {
+    color:#FF0700;
+}
+
+a{
+    text-decoration: none;
+}
+
+  /*mode téléphone*/
+  @media (max-width: 760px) {
+    header{
+        height: fit-content;
+        display: flex;
+        justify-content: fit-;
+        align-items:center;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .headerContainer {
+        flex-wrap: wrap;
+    }
+    .lefter {
+        display: flex;
+        flex-direction: row;
+        border: none;
+        height: fit-content;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .lefter > a {
+        margin-inline: auto;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .notCoContainer {
+        zoom: 80%;
+    }
+    .logo {
+        zoom: 70%;
+    }
+    .postList {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        left: 0%;
+        max-width: 90%;
+    }
+    .postBody {
+        width: 100%
+    }
+    .postHeader {
+        flex-wrap: wrap;
+    }
+    .post {
+    width: 100%
+    }
+}

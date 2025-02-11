@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/error.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+        
+        <div class="mainContainer">
+            <p>{{.ErrorCode}} : {{.ErrorMessage}}</p>
+            <a href="/">back to main page</a>
+        </div>
+    </body>
+</html>

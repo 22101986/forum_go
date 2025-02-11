@@ -1,0 +1,436 @@
+html{
+    height:100%;
+    margin:0;
+}
+
+body{
+    background-color:#1F1F1F;
+    height:100%;
+    margin:0;
+    font-family: 'Monaco', monospace;
+}
+
+input, pre {
+    font-family: 'Monaco', monospace;
+}
+
+header{
+    background-color: #2F2F2F;
+    height: 12%;
+    color:white;
+    border-bottom: solid 3px white;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.profilePicture {
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+}
+
+.containerNamePP {
+    display:flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width:fit-content;
+    align-items: center;
+}
+
+.rightHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.logo{
+    height: 10vh;
+}
+
+.clocheNotif {
+    width:40px;
+    transition: width 0,2s;
+}
+
+.clocheNotif:hover {
+    width: 50px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    padding: 0 20px; 
+}
+
+.notCoContainer{
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    width:fit-content;
+    gap: 10px;
+    padding:10px;
+    margin:5px;
+}
+
+.notCoContainer button {
+    background-color: #0070FF;
+    color:white;
+    font-family: 'Monaco', monospace;
+    border:none;
+    font-size:18px;
+    border-radius:8px;
+    padding:10px;
+    margin:5px;
+}
+
+label{
+    color: #E9E9E9;
+}
+
+.nbNotifs {
+    position: absolute;
+    background-color: #FF0700;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+    top: 7%;
+    right: 1.2%;
+}
+
+.nbNotifs p {
+    margin: 0;
+    color: white;
+    font-size: 12px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: calc(88% - 2px);
+}
+
+
+.lefter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: 100%;
+    border-right: 3px solid #A0A0A0;
+    padding-right: 20px;
+    gap: 20px;
+}
+
+.containerMyPages {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-top: 10px;
+    padding:10px;
+    width:fit-content;
+    height: fit-content;
+}
+
+.leftButton {
+    background-color: #303030;
+    color: white;
+    font-family: 'Monaco', monospace;
+    font-size: 16px;
+    border: none;
+    padding:10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width:100%;
+    text-align: center;
+}
+
+.leftButton:hover {
+    background-color: #0070FF;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #2F2F2F;
+    padding: 30px;
+    border-radius: 20px;
+    width: 40%;
+    height:fit-content;
+    margin-top: 5vh;
+    margin-left: 20%;
+}
+
+input {
+    all: unset;
+    font-family: 'Monaco', monospace;
+    border: 2px solid #4F4F4F;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+form input {
+    background-color: #1F1F1F;
+    color: white;
+    font-family: 'Monaco', monospace;
+    border: 2px solid #4F4F4F;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+form input:focus {
+    border: solid #8F8F8F 2px !important;
+}
+
+
+form h2 {
+    text-align: center;
+}
+
+form #submit {
+    margin-top: 10vh;
+    padding: 10px;
+    width: 50%;
+    background-color: #0070FF;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-size: 18px;
+    margin-left: auto; 
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+
+form #submit:hover{
+    background-color:#065fd4;
+    cursor: pointer;
+}
+
+.errorMessage {
+    background-color: #FF0700;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.buttonContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:fit-content;
+    row-gap: 40px;
+    margin-top: 5vh;
+    margin-left: 5vw;
+}
+
+.deleteButton, .modoButton {
+    background-color: #FF0700;
+    color: white;
+    font-family: 'Monaco', monospace;
+    border: none;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #CC0505;
+}
+
+.modoButton {
+    background-color: #0070FF;
+}
+
+.modoButton:hover {
+    background-color: #065fd4;
+}
+
+a {
+    text-decoration: none;
+}
+
+.containerUsername {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    top: 100%;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 75%; 
+    background-color: #505050;
+    border-radius: 1vw;
+    width: max-content;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.containerUsername:hover .dropdown {
+    display: flex;
+}
+
+.dropOp {
+    color: white;
+    background-color:#505050;
+    border:solid white 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dropUp{
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.dropUp:hover {
+    background-color: #0070FF; 
+}
+
+.dropLow{
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.dropLow:hover {
+    background-color: #FF0700; 
+}
+
+.dropdown_animation {
+    animation: rotateX 100ms ease-in-out forwards
+    
+}
+    
+@keyframes rotateX {
+     0% {
+        transform: rotateX(90deg)
+    }
+    80% {
+        transform: rotateX(-10deg)
+    }
+    100% {
+        transform: rotateX(0)
+    }
+}
+
+    /*mode téléphone*/
+    @media (max-width: 760px) {
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        header{
+            height: fit-content;
+            display: flex;
+            justify-content: fit-;
+            align-items:center;
+            width: 100%;
+        }
+
+        .headerContainer {
+            width: 100vw;
+            flex-wrap: wrap;
+            padding: 0;
+            column-gap: 10px;
+        }
+
+        a .logo {
+            display: block;
+            zoom: 70%;
+            align-self: center;
+        }
+
+        .usernamePar {
+            max-width: 75%;
+            word-wrap:break-word;
+        }
+        .containerNamePP {
+            column-gap: 0;
+            max-width: 150px;
+        }
+        .containerUsername {
+            column-gap: 0;
+            justify-content: center;
+        }
+
+        form {
+            margin: 0%;
+            width: 80%;
+            margin-top: 5%;
+        }
+
+        form #submit {
+            margin: 0;
+            border-radius: none;
+            align-self: center;
+        }
+
+        .lefter {
+            padding-right: 0;
+            width: fit-content;
+            flex-direction: row;
+            border: none;
+            border-bottom: 3px solid #A0A0A0;
+            padding-bottom: 20 px;
+        }
+        
+        .container {
+            align-items: center;
+            flex-direction: column;
+            height: fit-content;
+            width: 80vw;
+        }
+
+        .containerMyPages {
+            width: 100%;
+            flex-direction: row;
+            column-gap: 5%;
+            flex-wrap: wrap;
+        }
+
+        .leftButton {
+            text-align: center;
+            width: fit-content;
+        }
+
+        .homeLink {
+            display: none;
+        }
+
+        .formContainer {
+            margin: 0%;
+            align-self: center;
+        }
+        .registerForm {
+            padding-top: 10%;
+        }
+
+        .buttonContainer {
+            margin: 5%;
+        }
+    }

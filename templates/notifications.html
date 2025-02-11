@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/notification.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <div class="headerContainer">
+                <div class="leftHeader">
+                    <!--<a href="/">Forum<br>(logo?)</a>-->
+                    <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+                </div>
+                <div class="rightHeader">
+                    <!--Faire if déja connecté-->
+                    <!--if déja connecté afficher pseudo-->
+                    {{$lenNot := len .AllNotifs}}
+                    {{if .LoggedIn}}
+                    <!-- Only show the logout button if the user is logged in -->
+                    <div class="containerUsername">
+                        <div class = "containerNamePP">
+                            <p class="usernamePar">{{.User.Name}}</p>
+                            {{if .User.Picture}}
+                            <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                            {{else}}
+                            <img class="profilePicture" src="../pictures/defaultPic.svg">
+                            {{end}}
+                        </div>                    
+                        <div class="dropdown dropdown_animation">
+                            <a class="dropOp dropUp" href="/myProfile">
+                                My profile
+                            </a>
+                            <a class="dropOp dropLow" href="/logout">
+                                Logout
+                            </a>                   
+                        </div>  
+                    </div>
+                    <a href="/notifications">
+                        <img class="clocheNotif" src="../pictures/notifBell.svg">
+                        {{if ne $lenNot 0}}
+                        <div class="nbNotifs">
+                            <p>{{$lenNot}}</p>
+                        </div>
+                        {{end}}
+                    </a>
+                    {{else}}
+                    <!--else afficher boutons-->
+                    <div class="notCoContainer">
+                        <a name="login" href="/login"><button>Login</button></a>
+                        <a name="register" href="/register"><button>Register</button></a>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </header>
+        <div class="containerNotif">
+        <!--Pour chaque notif-->
+        {{range .AllNotifs}}
+                <!--Verif type notif-->
+                {{if eq .Type 1}}
+                    <div class="notif">
+                        <p>"{{.Post.Title}}" has been liked</p>
+                        <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                    </div>
+                {{else if eq .Type 2}}
+                    <div class="notif">
+                        <p>"{{.Post.Title}}" has been disliked</p>
+                        <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                    </div>
+                {{else if eq .Type 3}}
+                    <div class="notif">
+                        <p>Your comment on "{{.Post.Title}}" has been liked</p>
+                        <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                    </div>
+                {{else if eq .Type 4}}
+                    <div class="notif">
+                        <p>Your comment on "{{.Post.Title}}" has been disliked</p>
+                        <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                    </div>
+                {{else if eq .Type 5}}
+                    <div class="notif">
+                        <p>"{{.Post.Title}}" has a new comment</p>
+                        <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                    </div>
+                    <!--si post liké/disliké/commenté -> afficher titre du post cliquable-->
+
+                    <!--si commentaire liké/disliké -> afficher titre du post ou le commentaire est-->
+
+                    <!--si demande de moderateur -> afficher utilisateur qui demande et bouton pour accepter/refuser-->
+                {{else if eq .Type 6}}
+                    <div class="notif">
+                        <p>{{.UserFrom.Name}} wants to become Moderator</p>
+                        <div class="answerContainer">
+                            <a href="/adminAnswer?user={{.UserFrom.UUID}}&notif={{.ID}}&result=accept&postBool=0&comBool=0" class="acceptInput">Accept</a>
+                            <a href="/adminAnswer?user={{.UserFrom.UUID}}&notif={{.ID}}&result=refuse&postBool=0&comBool=0" class="rejectInput">Reject</a>
+                        </div>
+                    </div>
+                    <!--si report -> afficher titre post cliquable + raison-->
+                {{else if eq .Type 7}}
+                    <div class="notif">
+                        <p>The post "{{.Post.Title}}" has been reported</p>
+                        <div class="choiceContainer">
+                            <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                            <a href="/adminAnswer?user={{.UserFrom.UUID}}&notif={{.ID}}&result=accept&postBool=1&comBool=0" class="acceptInput">Accept Deletion</a>
+                            <a href="/adminAnswer?user={{.UserFrom.UUID}}&notif={{.ID}}&result=refuse&postBool=1&comBool=0" class="rejectInput">Reject Deletion</a>
+                        </div>
+                    </div>
+                {{else if eq .Type 8}}
+                    <div class="notif">
+                        <p>The comment "{{.Comment.Content}}" from the post "{{.Post.Title}}" has been reported</p>
+                        <div class="choiceContainer">
+                            <a href="/detailPost?ID={{.Post.ID}}" class="normalInput">See post</a>
+                            <a href="/adminAnswer?user={{.UserFrom.UUID}}&notif={{.ID}}&result=accept&postBool=0&comBool=1" class="acceptInput">Accept Deletion</a>
+                            <a href="/adminAnswer?user={{.UserFrom.UUID}}&notif={{.ID}}&result=refuse&postBool=0&comBool=1" class="rejectInput">Reject Deletion</a>
+                        </div>
+                    </div>      
+                {{else if eq .Type 9}}
+                    <div class="notif">
+                        <p>Your request to become a moderator has been accepted</p>
+                    </div>
+                {{else if eq .Type 10}}
+                    <div class="notif">
+                        <p>Your request to become a moderator has been denied</p>
+                    </div>
+                {{else if eq .Type 11}}
+                    <div class="notif">
+                        <p>Your deletion request has been accepted</p>
+                    </div>
+                 {{else if eq .Type 12}}
+                    <div class="notif">
+                        <p>Your deletion request has been denied</p>
+                    </div>
+                <!--end-->
+                {{end}}
+            <!--end-->
+            {{end}}
+            {{if eq $lenNot 0}}
+                    <div class="notif">
+                        <p>No new notifications</p>
+                    </div>
+            {{end}}
+            <!--<div class="notif">
+                <p>"user" wants to become a moderator</p>
+                <div class="containerMod">
+                    <a href="lienPost" class="normalInput">Accept</a>
+                    <a href="lienPost" class="rejectInput">Reject</a>
+                </div>
+            </div>-->
+        </div>
+    </body>
+</html>

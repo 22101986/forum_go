@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+        <div class="formContainer">
+            <form method="POST" class="registerForm" action="/login">
+                <a class ="homeLink" href="/">Back to home page</a>
+                <input class="textInput" type="text" placeholder="E-mail" name="email" required></input>
+                <input class="textInput" type="password" placeholder="Password" name="password" required></input>
+                <div class="remember">
+                    <input type="checkbox" class="checkremenber" name="remember" value="remember">
+                    <p>Remember me</p>
+                </div>
+                {{if .ErrorMessage}}
+                <div class="errorMessage">{{.ErrorMessage}}</div>
+                {{end}}
+                <input type="submit" id="submit" value="Login">
+                <h3>Log in with:</h3>
+                <div class="linkContainer">
+                    <a href="/login/google"><img src="../pictures/google.png" alt=""></a>
+                    <a href="/login/discord"><img src="../pictures/discord.png" alt=""></a>
+                    <a href="/login/github"><img src="../pictures/github.png"alt=""></a>
+                </div>
+                <p>Don't have an account ? : <a href="/register">Register here</a></p>
+            </form>
+        </div>
+    </body>
+</html>

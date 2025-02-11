@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
+        <defs>
+            <mask id="maskBody">
+                <rect x="0" y="0" width="500" height="500" fill="white"/>
+                <rect x="235" y="180" rx="10" ry="10" width="28" height="250" fill="black"/>
+                <rect x="170" y="180" rx="10" ry="10" width="28" height="250" fill="black"/>
+                <rect x="300" y="180" rx="10" ry="10" width="28" height="250" fill="black"/>
+            </mask>
+        </defs>
+        <g id="all" fill="white" stroke="white" stroke-width="10">
+            <g id="binCap">
+                <rect x="80" y="80" rx="10" ry="10" width="340" height="50"/>
+                <rect x="160" y="50" rx="10" ry="10" width="180" height="50"/>
+            </g>
+            <g id="binBody">
+                <path d="M120 150 l15 290 c5 10 10 10 10 10 h210 c5 0 10 -5 10 -10 l15 -290z" mask="url(#maskBody)"/>
+            </g>
+        </g>
+</svg>

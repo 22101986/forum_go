@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/myProfile.css">
+    <title>My Profile</title>
+</head>
+<body>
+    <header>
+        <div class="headerContainer">
+            <div class="leftHeader">
+                <a href="/"><img class="logo" src="../pictures/logo.svg" alt="Logo"></a>
+            </div>
+            <div class="rightHeader">
+                {{if .LoggedIn}}
+                <div class="containerUsername">
+                    <div class = "containerNamePP">
+                        <p class="usernamePar">{{.User.Name}}</p>
+                        {{if .User.Picture}}
+                        <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                        {{else}}
+                        <img class="profilePicture" src="../pictures/defaultPic.svg">
+                        {{end}}
+                    </div> 
+                    <div class="dropdown dropdown_animation">
+                        <a class="dropOp dropUp" href="/">Home page</a>
+                        <a class="dropOp dropLow" href="/logout">Logout</a>
+                    </div>  
+                </div>
+                <a href="/notifications">
+                    <img class="clocheNotif" src="../pictures/notifBell.svg">
+                    {{if ne .NbrNotif 0}}
+                    <div class="nbNotifs">
+                        <p>{{.NbrNotif}}</p>
+                    </div>
+                    {{end}}
+                </a>
+                {{else}}
+                <div class="notCoContainer">
+                    <a name="login" href="/login"><button>Login</button></a>
+                    <a name="register" href="/register"><button>Register</button></a>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </header>
+    <div class="container"> 
+        <div class="lefter">
+            <div class="containerMyPages">
+                <a {{if .LoggedIn}}href="/myActivity"{{else}}href="/"{{end}} class="leftButton">Activity</a> 
+                <a {{if .LoggedIn}}href="/myPosts"{{else}}href="/"{{end}} class="leftButton">My Posts</a>
+                <a {{if .LoggedIn}}href="/myLikes"{{else}}href="/"{{end}} class="leftButton">My Likes</a>
+                {{if eq .User.Role 4}}
+                    <a {{if .LoggedIn}}href="/admin"{{else}}href="/"{{end}} class="leftButton">Admin page</a>
+                {{end}}
+            </div>
+        </div>
+        {{if .LoggedIn}}
+        <form method="POST" action="/myProfile" enctype="multipart/form-data">
+            <h2>Edit Profile</h2>
+            {{if eq .User.IsExternal 0}}
+            <input class="formTextInput" type="text" placeholder="Username" name="name" maxlength="30" value="{{.User.Name}}" required>          
+            <input class="formTextInput" type="text" placeholder="E-mail" name="email" value="{{.User.Email}}">
+            <input class="formTextInput" type="password" placeholder="Password" name="password" minlength="6" maxlength="72">
+            <input class="formTextInput" type="password" placeholder="Confirm Password" name="cpassword" minlength="6" maxlength="72">
+            {{end}}
+            <input class="formTextInput" type="file" name="image" accept="image/*">
+            {{if .ErrorMessage}}
+            <div class="errorMessage">{{.ErrorMessage}}</div>
+            {{end}}
+            <input id="submit" type="submit" value="Apply changes">
+        </form>
+        {{end}}
+        <div class="buttonContainer">
+            <div class="containerDelete">
+                <a {{if .LoggedIn}}href="/deleteProfile"{{else}}href="/"{{end}}>
+                    <input type="button" class="deleteButton" value="Delete Profile">
+                </a>
+            </div>
+            {{if and (le .User.Role 2) (not .AskedModo)}}
+            <div class="containerModo">
+                <a href="/askModo">
+                    <input type="button" class="modoButton" value="Ask for moderator role">
+                </a>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>

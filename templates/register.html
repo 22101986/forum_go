@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/register.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+        <div class="formContainer">
+            
+            <form method="POST" class="registerForm" action="/register">
+                <a class ="homeLink" href="/">Back to home page</a>
+                <input type="text" placeholder="Username" name="name" maxlength="30" required></input>
+                <input type="text" placeholder="E-mail" name="email"  required></input>
+                <input type="password" placeholder="Password" name="password" minlength="6" maxlength="72" required></input>
+                {{if .ErrorMessage}}
+                <br>
+                <div class="errorMessage">{{.ErrorMessage}}</div>
+                {{end}}
+                <input type="submit" id="submit" value="Register">
+                <h3>Sign in with:</h3>
+                <div class="linkContainer">
+                    <a href="/login/google"><img src="../pictures/google.png" alt=""></a>
+                    <a href="/login/discord"><img src="../pictures/discord.png" alt=""></a>
+                    <a href="/login/github"><img src="../pictures/github.png"alt=""></a>
+                </div>
+                <p>Already registered ? : <a href="/login">Login here</a></p>
+            </form>
+        </div>
+    </body>
+</html>

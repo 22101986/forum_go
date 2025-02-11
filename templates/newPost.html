@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/newPost.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <div class="headerContainer">
+                <div class="leftHeader">
+                    <!--<a href="/">Forum<br>(logo?)</a>-->
+                    <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+                </div>
+                <div class="rightHeader">
+                    <!--Faire if déja connecté-->
+                    <!--if déja connecté afficher pseudo-->
+                    {{if .LoggedIn}}
+                    <!-- Only show the logout button if the user is logged in -->
+                    <div class="containerUsername">
+                        <div class = "containerNamePP">
+                            <p class="usernamePar">{{.User.Name}}</p>
+                            {{if .User.Picture}}
+                            <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                            {{else}}
+                            <img class="profilePicture" src="../pictures/defaultPic.svg">
+                            {{end}}
+                        </div>                  
+                        <div class="dropdown dropdown_animation">
+                            <a class="dropOp dropUp" href="/myProfile">
+                                My profile
+                            </a>
+                            <a class="dropOp dropLow" href="/logout">
+                                Logout
+                            </a>                   
+                        </div>  
+                    </div>
+                    <a href="/notifications">
+                        <img class="clocheNotif" src="../pictures/notifBell.svg">
+                        {{if ne .NbrNotif 0}}
+                        <div class="nbNotifs">
+                            <p>{{.NbrNotif}}</p>
+                        </div>
+                        {{end}}
+                    </a>
+                    {{else}}
+                    <!--else afficher boutons-->
+                    <div class="notCoContainer">
+                        <a name="login" href="/login"><button>Login</button></a>
+                        <a name="register" href="/register"><button>Register</button></a>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </header>
+        <form method="POST" action="/newPost" enctype="multipart/form-data">
+            <input type="text" class="formTitleInput" placeholder="Title" name="title" maxlength="55" value="{{.Title}}" required>
+            <textarea class="formTextInput" placeholder="Content" name="content" required>{{.Content}}</textarea>
+            <div class="pictureInputContainer">
+                <input type="file" name="image" class="pictureInput" accept="image/*">
+            </div>
+            <div class="formCategories">
+                <label>Categories</label><br><br>
+                <div class="containerCategories">
+                    <!--For chaque categories-->
+                    {{range .AllCats}}
+                    <div class="categorie">
+                        <input type="checkbox" name="{{.Name}}" value="{{.Name}}">
+                        <label>{{.Name}}</label>
+                    </div>
+                    <!--end for-->
+                    {{end}}
+                </div>
+            </div>
+            {{if .ErrorBool}}
+                <div class="errorMessage">{{.ErrorMessage}}</div>
+            {{end}}
+            <input type="submit" class="formSubmit" value="Post">
+        </form>
+    </body>
+</html>

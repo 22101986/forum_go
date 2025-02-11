@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="600px" height="350px" viewBox="50 100 530 300" enable-background="new 0 0 500 500" xml:space="preserve">
+        <g id="all" transform="rotate(20 300 300)">
+            <g id="body" stroke="black" stroke-width="3">
+                <path d="M550 200 c-150 -100 -350 -100 -400 100 l30 20 c100 -100 100 -100 200 -100 c10 -30 10 -30 30 -50 c-50 100 10 100 140 30z" fill="#0070FF"/>
+                <path d="M560 210 c-200 150 -250 0 -370 130 c50 -90 200 -60 210 -65 c-25 -10 -20 -30 -20 -30 c20 70 150 -20 180 -35z" fill="#FF0700"/>
+            </g>
+            <g id="fins" stroke="black" stroke-width="3">
+                <path d="M300 100 c30 20 10 30 50 30 c-70 5 -90 15 -120 35 c70 -50 100 -20 70 -65z" fill="#0070FF"/>
+                <path d="M280 300 c30 0 30 -10 50 -15 h-35 c5 7 5 7 -15 15z" fill="#FF0700"/>
+                <path d="M380 270 c-10 -15 -10 -25 0 -40 l-50 10 c5 7 5 7 -15 15z" fill="#0070FF"/>
+            </g>
+            <g id="tail" fill="red" stroke="black" stroke-width="3">
+                <path d="M147 303 l30 20 l10 20 c-10 20 -10 80 0 100 c-60 -50 -80 -50 -140 -120 c20 5 80 5 100 -20z"/>
+            </g>
+            <g id="eye" stroke="black" stroke-width="1">
+                <circle cx="480" cy="200" r="10" fill="white"/>
+                <circle cx="480" cy="200" r="6" fill="#FF0700"/>
+                <circle cx="478" cy="202" r="2" fill="white"/>
+            </g>
+        </g>
+</svg>

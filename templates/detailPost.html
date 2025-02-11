@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/detailPost.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <div class="headerContainer">
+                <div class="leftHeader">
+                    <!--<a href="/">Forum<br>(logo?)</a>-->
+                    <a href="/"><img class="logo" src="../pictures/logo.svg"></a>
+                </div>
+                <div class="rightHeader">
+                    <!--Faire if déja connecté-->
+                    <!--if déja connecté afficher pseudo-->
+                    {{if .LoggedIn}}
+                    <!-- Only show the logout button if the user is logged in -->
+                    <div class="containerUsername">
+                        <div class = "containerNamePP">
+                            <p class="usernamePar">{{.User.Name}}</p>
+                            {{if .User.Picture}}
+                            <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                            {{else}}
+                            <img class="profilePicture" src="../pictures/defaultPic.svg">
+                            {{end}}
+                        </div>                 
+                        <div class="dropdown dropdown_animation">
+                            <a class="dropOp dropUp" href="/myProfile">
+                                My profile
+                            </a>
+                            <a class="dropOp dropLow" href="/logout">
+                                Logout
+                            </a>                   
+                        </div>  
+                    </div>
+                    <a href="/notifications">
+                        <img class="clocheNotif" src="../pictures/notifBell.svg">
+                        {{if ne .NbrNotif 0}}
+                        <div class="nbNotifs">
+                            <p>{{.NbrNotif}}</p>
+                        </div>
+                        {{end}}
+                    </a>
+                    {{else}}
+                    <!--else afficher boutons-->
+                    <div class="notCoContainer">
+                        <a name="login" href="/login"><button>Login</button></a>
+                        <a name="register" href="/register"><button>Register</button></a>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </header>
+        {{$logged := .LoggedIn}}
+        {{$lenCat := .Post.LenCat}}
+        <div class="mainPost">
+            <div class="mainPostBody">
+                <div class="mainPostHeader">
+                    <p>{{.Post.Title}}</p>
+                    <p class="parDate">{{.Post.Date}}</p>
+                </div>
+                <pre>{{.Post.Content}}</pre>
+                {{if .Post.Blob}}
+                <br>
+                <div class="containerMainImage">
+                    <img src="/imagePost?ID={{.Post.ID}}" alt="picturePost" class="mainPostImage">
+                </div>
+                {{end}}
+                <pre class="parCat">Categories : {{range $index, $cat := .Post.Cats}} {{$cat.Name}}{{if ne $index $lenCat}}, {{end}}{{end}}</pre>
+            </div>
+            <div class="mainPostFooter">
+                <div class="userInfo">
+                    <p>by : </p>
+                    {{if .Post.User.Picture}}
+                    <img class="profilePicture" src="/profilePicture?ID={{.Post.User.ID}}">
+                    {{else}}
+                    <img class="profilePicture" src="../pictures/defaultPic.svg">
+                    {{end}}
+                    <p>{{.Post.User.Name}}</p>
+                </div>
+                <div class="mainPostMod">
+                    {{if eq .Post.User.ID .User.ID}}
+                    <a href="/editPost?ID={{.Post.ID}}">
+                        <!--<button class="editButton">edit post</button>-->
+                        <img src="../pictures/pen.svg" class="svgModif">
+                    </a>
+                    <a href="/deletePost?ID={{.Post.ID}}">
+                        <!--<button class="deleteButton">delete post</button>-->
+                        <img src="../pictures/bin.svg" class="svgSuppr">
+                    </a>
+
+                    {{else if ge .User.Role 3}}
+                    <a href="/deletePost?ID={{.Post.ID}}">
+                        <!--<button class="deleteButton">delete post</button>-->
+                        <img src="../pictures/bin.svg" class="svgSuppr">
+                    </a>
+                        {{if eq .User.Role 3}}
+                        <a href="/report?postID={{.Post.ID}}&comID=">
+                            <img src="../pictures/report.svg" class="svgSuppr">
+                        </a>
+                        {{end}}
+                    {{end}} 
+                </div>
+                <div class="compteurLikes">
+                    {{if not $logged}}
+                        <p>Login to like or dislike</p>
+                    {{end}}
+                    <a {{if $logged}} href="/likePost?ID={{.Post.ID}}&source=/detailPost?ID={{.Post.ID}}" {{end}}>
+                        <div class="likeTriangle{{if .Post.IsLike}}A{{end}}"></div>
+                        <div class="like{{if .Post.IsLike}}A{{end}}">
+                            <p>{{len .Post.Likes}}</p>
+                        </div>
+                    </a>
+                    <p> / </p>
+                    <a {{if $logged}} href="/dislikePost?ID={{.Post.ID}}&source=/detailPost?ID={{.Post.ID}}" {{end}}>
+                        <div class="dislike{{if .Post.IsDislike}}A{{end}}">
+                            <p>{{len .Post.Dislikes}}</p>
+                        </div>
+                        <div class="dislikeTriangle{{if .Post.IsDislike}}A{{end}}"></div>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        {{if .LoggedIn}}
+        {{if .ErrorBool}}
+                <div class="errorMessage">{{.ErrorMessage}}</div>
+        {{end}}
+        <form class="newComment" action="/detailPost?ID={{.Post.ID}}" method="post">
+            <textarea placeholder="Write your comment here..." name="content" required></textarea>  
+            <input type="submit" class="sendComment" value="Send">       
+        </form>
+        {{else}}
+        <form class="newCommentDisabled">
+            <textarea placeholder="You have to login in order to write a comment." disabled></textarea>  
+            <input type="submit" class="sendComment" value="Send" disabled>       
+        </form>
+        {{end}}
+        <div class="separator"></div>
+        <div class="commentList">
+            <!--For chaque comment-->
+            {{$postID := .Post.ID}}
+            {{$userID := .User.ID}}
+            {{$userRole := .User.Role}}
+            {{range .Post.Comments}}
+            <div class="comment">
+                <div class="commentBody">
+                    <div class="commentHeader">
+                        <div class="userInfo">
+                            {{if .User.Picture}}
+                            <img class="profilePicture" src="/profilePicture?ID={{.User.ID}}">
+                            {{else}}
+                            <img class="profilePicture" src="../pictures/defaultPic.svg">
+                            {{end}}
+                            <p> {{.User.Name}} says:</p>
+                        </div>
+                        <p>{{.Date}}</p>
+                    </div>
+                    <pre>{{.Content}}</pre>
+                </div>
+                <div class="commentFooter">
+                    <div class="decalage"></div>
+                    <div class="commentMod">
+                        {{if eq .User.ID $userID}}
+                        <a href="/editComment?ID={{.ID}}">
+                            <!--<button class="editButton">edit comment</button>-->
+                            <img src="../pictures/pen.svg" class="svgModif">
+                        </a>
+                        <a href="/deleteComment?ID={{.ID}}">
+                            <!--<button class="deleteButton">delete comment</button>-->
+                            <img src="../pictures/bin.svg" class="svgSuppr">
+                        </a>
+
+                        {{else if eq $userRole 3}}
+                        <a href="/report?postID={{$postID}}&comID={{.ID}}">
+                            <img src="../pictures/report.svg" class="svgSuppr">
+                        </a>
+
+                        {{else if eq $userRole 4}}
+                        <a href="/deleteComment?ID={{.ID}}">
+                            <!--<button class="deleteButton">delete post</button>-->
+                            <img src="../pictures/bin.svg" class="svgSuppr">
+                        </a>
+                        {{end}}
+                    </div>
+                    <div class="compteurLikes">
+                        {{if not $logged}}
+                            <p>Login to like or dislike</p>
+                        {{end}}
+                        <a {{if $logged}} href="/likeCom?ID={{.ID}}&source=/detailPost?ID={{$postID}}" {{end}}>
+                            <div class="likeTriangle{{if .IsLike}}A{{end}}"></div>
+                            <div class="like{{if .IsLike}}A{{end}}">
+                                <p>{{len .Likes}}</p>
+                            </div>
+                        </a>
+                        <p> / </p>
+                        <a {{if $logged}} href="/dislikeCom?ID={{.ID}}&source=/detailPost?ID={{$postID}}" {{end}}>
+                            <div class="dislike{{if .IsDislike}}A{{end}}">
+                                <p>{{len .Dislikes}}</p>
+                            </div>
+                            <div class="dislikeTriangle{{if .IsDislike}}A{{end}}"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{end}}          
+            <!--end for-->
+        </div>
+    </body>
+</html>

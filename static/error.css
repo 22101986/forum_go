@@ -1,0 +1,40 @@
+html, body {
+    margin:0;
+    background-color:#1F1F1F;
+    font-family: 'Monaco', monospace;
+}
+
+.mainContainer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    color:white;
+    background-color: #2F2F2F;
+    width:40vw;
+    margin-inline:auto;
+    border-radius:2vw;
+    margin-top: 40vh;
+    text-align: center;
+    min-width: fit-content;
+    padding:2%;
+}
+
+a{
+    color:white;
+}
+.logo {
+display: none;
+}
+
+    /*mode téléphone*/
+@media (max-width: 760px) {
+    .logo {
+        display: flex;
+        justify-self: center;
+        zoom: 30%;
+        margin-top: 40%;
+    }
+    .mainContainer {
+        margin-top: 10%;
+    }
+}

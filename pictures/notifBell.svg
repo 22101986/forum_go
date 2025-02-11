@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
+        <defs>
+            <mask id="maskCircle">
+                <rect x="0" y="0" width="500" height="500" fill="white"/>
+                <polygon points="0 420 250 0 500 420" fill="black"/>
+            </mask>
+        </defs>
+        <g id="all" fill="white" stroke="white" stroke-width="10">
+            <g id="bellCircles" >
+                <circle cx="250" cy="420" r="50" mask="url(#maskCircle)"/>
+                <circle cx="250" cy="50" r="30"/>
+            </g>
+            <g id="bellBody">
+                <path d="M50 400 v-10 l50 -50 v-140 a1 1 0 0 1 300 0 v140 l50 50 v10z"/>
+            </g>
+        </g>
+</svg>

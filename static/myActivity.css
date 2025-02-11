@@ -1,0 +1,262 @@
+html{
+    height:100%;
+    margin:0;
+}
+
+body{
+    background-color:#1F1F1F;
+    height:100%;
+    margin:0;
+    font-family: 'Monaco', monospace;
+    color: white;
+}
+
+input, pre {
+    font-family: 'Monaco', monospace;
+}
+
+header{
+    background-color: #2F2F2F;
+    height: 12%;
+    color:white;
+    border-bottom: solid 3px white;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.profilePicture {
+    width:40px;
+    height:40px;
+    border-radius: 100%;
+}
+
+.containerNamePP {
+    display:flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width:fit-content;
+    align-items: center;
+}
+
+.rightHeader {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.logo{
+    height: 10vh;
+}
+
+.clocheNotif {
+    width:40px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    padding: 0 20px; 
+}
+
+.notCoContainer{
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    width:fit-content;
+    gap: 10px;
+    padding:10px;
+    margin:5px;
+}
+
+.notCoContainer button {
+    background-color: #0070FF;
+    color:white;
+    font-family: 'Monaco', monospace;
+    border:none;
+    font-size:18px;
+    border-radius:8px;
+    padding:10px;
+    margin:5px;
+}
+
+label{
+    color: #E9E9E9;
+}
+
+.userInfo {
+    display:flex;
+    flex-direction: row;
+    column-gap: 5px;
+    align-items: center;
+    justify-content: left;
+    margin-top: 3px;
+}
+
+.activityList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 80vw;
+    margin: auto;
+    overflow-y: auto;
+}
+
+.activityItem {
+    background-color: #303030;
+    border-radius: 20px;
+    padding: 20px;
+    color:white;
+}
+
+.activityItem p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.titlePar {
+    margin-left: 10px;
+}
+
+.postSection, .commentsSection, .likeSection, .dislikeSection {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #404040;
+}
+
+.postSection h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.commentsSection h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.commentItem {
+    background-color: #505050;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.commentItem p {
+    margin: 5px 0;
+}
+
+.nbNotifs {
+    position: absolute;
+    background-color: #FF0700;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+    top: 7%;
+    right: 1.2%;
+}
+
+.nbNotifs p {
+    margin: 0;
+    color: white;
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: #0070FF;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button {
+    background-color: #0070FF;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056CC;
+}
+
+.containerUsername {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    top: 100%;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 75%; 
+    background-color: #505050;
+    border-radius: 1vw;
+    width: max-content;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.containerUsername:hover .dropdown {
+    display: flex;
+}
+
+.dropOp {
+    color: white;
+    background-color:#505050;
+    border:solid white 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+.dropUp{
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.dropUp:hover {
+    background-color: #0070FF; 
+}
+
+.dropLow{
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+.dropLow:hover {
+    background-color: #FF0700; 
+}
+
+.dropdown_animation {
+    animation: rotateX 100ms ease-in-out forwards
+    
+}
+    
+@keyframes rotateX {
+     0% {
+        transform: rotateX(90deg)
+    }
+    80% {
+        transform: rotateX(-10deg)
+    }
+    100% {
+        transform: rotateX(0)
+    }
+} 
